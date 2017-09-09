@@ -1,5 +1,6 @@
 #include "snake.h"
 
+
 using namespace std;
 
 int main()
@@ -11,6 +12,7 @@ int main()
 		draw();
 		input();
 		logic();
+		Sleep(20);
 	}
 	cout << " Game is over and your score is: " << getScore() << endl;
 
