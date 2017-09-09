@@ -1,4 +1,6 @@
 #include <iostream>
+#include <conio.h>
+
 enum eDirection
 {
 	STOP = 0,
@@ -12,8 +14,7 @@ void setup();
 void draw();
 void input();
 void logic();
-bool getGameOver();
 void setGameOver(bool);
-void setDir(eDirection);
-eDirection gerDirection();
+bool getGameOver();
+int getScore();
 

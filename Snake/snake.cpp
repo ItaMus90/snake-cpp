@@ -21,24 +21,9 @@ void setup()
 	fruitY = rand() % height;
 	score = 0;
 }
-void setDir(eDirection eDir)
+int getScore()
 {
-	dir = eDir;
-}
-
-eDirection gerDirection()
-{
-	return dir;
-}
-
-int getWidth()
-{
-	return width;
-}
-
-int getHeight()
-{
-	return height;
+	return score;
 }
 
 bool getGameOver()
@@ -76,7 +61,16 @@ void draw()
 				cout << "#";
 			}
 
-			cout << " ";
+			if (i == cordY && j == cordX)
+			{
+				cout << "O";
+			}
+			else if (i == fruitY && j == fruitX)
+			{
+				cout << "F";
+			}
+			else
+				cout << " ";
 		}
 
 		cout << endl;
@@ -88,15 +82,64 @@ void draw()
 	}
 
 	cout << endl;
+	cout << "Score: " << score <<endl;
 
 }
 
 void input()
 {
-
+	if (_kbhit())
+	{
+		switch (_getch())
+		{
+		case 'a':
+			dir = LEFT;
+			break;
+		case 'd':
+			dir = RIGHT;
+			break;
+		case 's':
+			dir = DOWN;
+			break;
+		case 'w':
+			dir = UP;
+			break;
+		case 'q':
+			isGameOver = true;
+			break;
+		}
+	}
 }
 
 void logic()
 {
+	switch (dir)
+	{
+	case RIGHT:
+		cordX++;
+		break;
+	case LEFT:
+		cordX--;
+		break;
+	case UP:
+		cordY--;
+		break;
+	case DOWN:
+		cordY++;	
+		break;
+	default:
+		break;
+	}
 
+	if (cordX > width - 1 || cordX - 1 < 0 || cordY > height - 1 || cordY - 1 < 0)
+	{
+		isGameOver = true;
+	}
+
+	if (cordX == fruitX && cordY == fruitY)
+	{
+		score += 10;
+		fruitX = rand() % width;
+		fruitY = rand() % height;
+	}
 }

@@ -12,6 +12,8 @@ int main()
 		input();
 		logic();
 	}
+	cout << " Game is over and your score is: " << getScore() << endl;
+
 	system("pause");
 	return 0;
 }
